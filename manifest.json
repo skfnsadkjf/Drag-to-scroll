@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"name": "Drag To Scroll",
+	"version": "1.0.12",
+	"description": "Allows click and drag to scroll",
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"run_at":"document_start",
+			"all_frames": true,
+			"js": ["content_script.js"]
+		}
+	]
+}

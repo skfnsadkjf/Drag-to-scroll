@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Drag To Scroll",
-	"version": "1.0.12",
+	"version": "1.0.16",
 	"description": "Allows click and drag to scroll",
 	"content_scripts": [
 		{

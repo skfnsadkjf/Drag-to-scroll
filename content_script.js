@@ -4,8 +4,11 @@ let dragMode = true;
 let mouseMoved = false;
 const dragging = ( e ) => {
 	mouseMoved = true;
-	if ( dragMode ) {
+	if ( dragMode && e.buttons == 1 ) {
 		window.scrollBy( e.movementX * multiplier * -1 , e.movementY * multiplier * -1 );
+	}
+	else {
+		document.removeEventListener( "mousemove" , dragging , true );
 	}
 }
 const mousedown = ( e ) => {
@@ -15,11 +18,8 @@ const mousedown = ( e ) => {
 	}
 }
 const mouseup = ( e ) => {
-	if ( e.button == 0 ) {
-		document.removeEventListener( "mousemove" , dragging , true );
-		if ( !mouseMoved && e.target.tagName != "A" && !IGNORE_TAGS.includes( e.target.tagName ) ) { // <a> tag check for when clicking a link opens a new tab and you want to stay in drag mode in existing tab.
-			dragMode = e.explicitOriginalTarget.nodeType != 3; // 3 represents a text node.
-		}
+	if ( e.button == 0 && !mouseMoved && e.target.tagName != "A" && !IGNORE_TAGS.includes( e.target.tagName ) ) { // <a> tag check for when clicking a link opens a new tab and you want to stay in drag mode in existing tab.
+		dragMode = e.explicitOriginalTarget.nodeType != 3; // 3 represents a text node.
 	}
 }
 const selectOrDragStart = ( e ) => {
